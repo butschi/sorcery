@@ -44,9 +44,9 @@ module Sorcery
 				        # Override included get_consumer method to provide authorize_path
 				        def get_consumer
                   ::OAuth::Consumer.new(@key, @secret,
-                                        :site => @site_auth,
+                                        :site => @site,
                                         :request_token_path =>  "/1/oauth/request_token",
-                                        :authorize_path     =>  "/1/oauth/authorize",
+                                        :authorize_path     =>  "#{@site_auth}/1/oauth/authorize",
                                         :access_token_path  =>  "/1/oauth/access_token")
                 end
                 
