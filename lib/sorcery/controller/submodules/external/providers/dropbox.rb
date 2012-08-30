@@ -43,12 +43,13 @@ module Sorcery
 				
 				        # Override included get_consumer method to provide authorize_path
 				        def get_consumer
-                  ::OAuth::Consumer.new(@key, @secret, :site => @site, :authorize_path => "/1/oauth/authorize")
+                  ::OAuth::Consumer.new(@key, @secret, :site => @site_auth, :authorize_path => "/oauth/authorize")
                 end
                 
                 def init
-                  @site           = "https://api.dropbox.com"
-                  @user_info_path = "/1/account/info"
+                  @site           = "https://api.dropbox.com/1"
+                  @site_auth      = "https://www.dropbox.com/1"
+                  @user_info_path = "/account/info"
                   @user_info_mapping = {}
                 end
                 
