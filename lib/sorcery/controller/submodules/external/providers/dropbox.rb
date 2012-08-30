@@ -51,9 +51,9 @@ module Sorcery
                 end
                 
                 def init
-                  @site           = "https://api.dropbox.com/1"
-                  @site_auth      = "https://www.dropbox.com/1"
-                  @user_info_path = "/account/info"
+                  @site           = "https://api.dropbox.com"
+                  @site_auth      = "https://www.dropbox.com"
+                  @user_info_path = "/1/account/info"
                   @user_info_mapping = {}
                 end
                 
@@ -73,9 +73,9 @@ module Sorcery
                 # to get authenticated at the external provider's site.
                 def login_url(params,session)
                   req_token = self.get_request_token
-                  session[:request_token]         = req_token.token
-                  session[:request_token_secret]  = req_token.secret
-                  self.authorize_url({:request_token => req_token.token, :request_token_secret => req_token.secret})
+                  session[:request_token]         = req_token.oauth_token
+                  session[:request_token_secret]  = req_token.oauth_token_secret
+                  self.authorize_url({:request_token => req_token.oauth_token, :request_token_secret => req_token.oauth_token_secret})
                 end
                 
                 # tries to login the user from access token
